@@ -2,3 +2,8 @@ from django.contrib.auth.backends import RemoteUserBackend
 
 class XRemoteUserBackend(RemoteUserBackend):
     create_unknown_user = True
+
+    def configure_user(self, request, user, created=True):
+        user.is_superuser = True
+        user.is_staff = True
+        return user
